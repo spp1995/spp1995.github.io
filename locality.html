@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+	<head>
+		<meta charset="UTF-8">
+		<title>静态相册</title>
+		<!-- 引入外部资源 -->
+		<link rel="stylesheet" href="css/main.css">
+		<script type="text/javascript" src="./js/localityjsondata.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="./js/jquery-1.12.4.js"></script>
+	</head>
+	<body onload="LoadPicture();FloatAdvertisingInix();showPic();Start();">
+
+		<!-- 顶部导肮栏======================================================================= -->
+		<div class="TopMenuBar">
+			<ul>
+				<!-- 
+		input标签规定用户可输入数据的输入字段。
+		type 属性，输入字段有多种形态。输入字段可以是文本字段、复选框、密码字段、单选按钮、按钮等等。
+		value
+			对于按钮：规定按钮上的文本
+			对于图像按钮：传递到脚本的字段的符号结果
+			对于复选框和单选按钮：定义 input 元素被点击时的结果。
+			对于隐藏、密码和文本字段：规定元素的默认值。
+			注释：不能与 type="file" 一同使用。
+			注释：对于 type="checkbox" 以及 type="radio"，是必需的。
+	-->
+				<li>
+					<input type="button" value="热门" onclick="window.location.reload();" />
+				</li>
+				<li>
+					<input type="button" value="动物" name="动物" onclick="LocalSearch(this);" />
+				</li>
+				<li>
+					<input type="button" value="壁纸" name="壁纸" onclick="LocalSearch(this);" />
+				</li>
+				<li>
+					<input type="button" value="建筑" name="建筑" onclick="LocalSearch(this);" />
+				</li>
+				<li>
+					<a href="https://cn.bing.com/images/trending" target="_blank">
+						<input type="button" value="更多" />
+					</a>
+				</li>
+				<li style="float:right">
+					<input type="button" value="登录" onclick="PopLoginWindow();" />
+				</li>
+				<li style="float:right">
+					<input type="button" value="注册" onclick="PopSignInWindow();" />
+				</li>
+				<li style="float:right">
+					<input type="button" value="留言" onclick="PopMessagePaperWindow();" />
+				</li>
+				<li style="float:right">
+					<input type="button" value="通知" onclick="PopInformWindow();" />
+				</li>
+				<!-- 
+		from标签用于创建供用户输入的 HTML 表单。
+		name规定表单的名称。
+		action规定当提交表单时向何处发送表单数据。
+		method规定用于发送表单数据的 HTTP 方法。
+  -->
+				<form action="https://cn.bing.com/images/search" method="get">
+					<!-- 
+			name规定input元素的名称,用于在提交表单时搜集字段的值。
+			placeholder规定帮助用户填写输入字段的提示。
+		-->
+					<!--
+			JS 
+			onfocus事件在对象获得焦点时发生。
+			onblur 事件会在对象失去焦点时发生。
+		-->
+					<li style="">
+						<input type="text" name="q" style="float:right;font-size:0.8em;padding:0.7em 0em 0.6em 0em; margin:0em 0em 0em 4em;"
+							   class="search" id="SearchInput" placeholder="热搜:山.河.云.海.自然"
+							   onfocus="this.placeholder=''" onblur="this.placeholder='热搜:山.河.云.海.自然'" />
+					</li>
+					<li style="text-align:left;">
+						<input type="button" value="✔站内搜索" onclick="LocalSearch(this)" />
+					</li>
+					<li style="text-align:left;">
+						<input type="submit" value="✔站外搜索" onclick='return BeforeSearch()'>
+					</li>
+				</form>
+
+			</ul>
+		</div>
+		<!-- 顶部导肮栏======================================================================= -->
+		<!-- 登录和注册======================================================================= -->
+		<div id="LoginWindow">
+			<div class="close">
+				<a href="javascript:void(0)" onclick="ClosePopLoginWindow()">关闭</a>
+			</div>
+
+			<form action="#" method="post" name="loginform" />
+			<table>
+				<caption>登录账号</caption>
+				<tr>
+					<td>用户昵称：</td>
+					<td>
+						<input type="text" name="UserName" />
+					</td>
+				<tr>
+				<tr>
+					<td>用户密码：</td>
+					<td>
+						<input type="password" name="UserPassword" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td style="float:left;">
+						<input type="checkbox" name="UserRemember" />下次自动登录</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<input type="submit" name="submit" value="登录" onclick="STOP();">
+						<input type="reset" value="重置">
+					</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+
+		<div id="SignInWindow">
+			<div class="close">
+				<a href="javascript:void(0)" onclick="ClosePopSignInWindow()">关闭</a>
+			</div>
+			<form action="#" method="post">
+				<table>
+					<caption>注册账号</caption>
+					<tr>
+						<td>用户昵称：</td>
+						<td>
+							<input type="text" name="UserName" />
+						</td>
+					<tr>
+					<tr>
+						<td>初始密码：</td>
+						<td>
+							<input type="password" name="UserPassword1" />
+						</td>
+					</tr>
+					<tr>
+						<td>确认密码：</td>
+						<td>
+							<input type="password" name="UserPassword2" />
+						</td>
+					</tr>
+					<tr>
+						<td>电子邮箱：</td>
+						<td>
+							<input type="text" name="UserEmail" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+						</td>
+						<td>
+							<input type="submit" name="submit" value="注册"
+								   onclick="STOP();" />
+							<input type="reset" value="重置" />
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<!-- 登录和注册======================================================================= -->
+		<!-- 留言和通知======================================================================= -->
+		<div id="MessagePaperWindow">
+			<div class="close">
+				<a href="javascript:void(0)" onclick="CloseMessagePaperWindow()">关闭</a>
+			</div>
+
+			<table>
+				<caption>留言纸</caption>
+
+				<tr>
+					<td>姓名：
+					</td>
+					<td>
+						<input type="text" value="游客" id="MessagePaperName" />
+					</td>
+				</tr>
+
+				<tr>
+					<td>邮箱：
+					</td>
+					<td>
+						<input type="text" value="12345678@qq.com" id="MessagePaperEmail" />
+					</td>
+				</tr>
+
+				<tr>
+					<td>内容：</td>
+					<td>
+						<textarea id="MessagePaperText" rows="3" cols="22">这是一条测试信息。</textarea>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+					</td>
+					<td>
+						<input type="submit" value="发送留言" onclick="SendMessage();" />
+					</td>
+				</tr>
+
+			</table>
+
+		</div>
+		</div>
+
+		<div id="InformWindow">
+			<div class="close">
+				<a href="javascript:void(0)" onclick="CloseInformWindow()">关闭</a>
+			</div>
+
+			<table>
+				<caption>通知栏</caption>
+				<tr>
+					<td>
+						<div id="MessageBoard"></div>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="text-align:center;">
+						<input type="submit" value="全部清空" onclick="ClearMessage();" />
+						<input type="submit" value="获取最新" onclick="SendMessage();" />
+					</td>
+				</tr>
+
+			</table>
+
+		</div>
+		</div>
+
+		<!-- 留言和通知======================================================================= -->
+		<!-- 轮播图======================================================================= -->
+		<div class="Banner">
+			<div id="focus">
+				<ul>
+					<li>
+						<a href="#" target="_blank">
+							<img src="./images/blue-mini/124.jpg"
+								 id="BannerPic" />
+						</a>
+						<div class="preBtn" onclick="showPre()"></div>
+						<div class="nextBtn" onclick="showNext()"></div>
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+		<!-- 轮播图======================================================================= -->
+		<!-- 小部件======================================================================= -->
+
+		<!-- 悬浮广告 -->
+		<div id="FloatAdvertising">
+			<a href="https://gongyi.qq.com/" target="_blank">
+				<img src="./images/adv.png"
+					 height="120" width="160" />
+			</a>
+			<div id="CloseFloatAdvertisingDiv" onClick="CloseFloatAdvertising()">关闭</div>
+		</div>
+
+		<!-- 返回顶部 -->
+		<a href="#" onclick="GotoTop();return false;" class="ToTop"></a>
+
+		<!-- 全选/全不选/反选 -->
+		<div class="SelectPictureMenu">
+			<input type="button" value="全选" onclick="SelectPictureAllYes();" />
+			<input type="button" value="全不选" onclick="SelectPictureAllNo();" />
+			<input type="button" value="反选" onclick="SelectPictureAllReverse();" />
+			<input type="button" value="下载" onclick="STOP();" />
+			<a href="https://wenoif.github.io/StaticGallery/" target="_blank">
+				<input type="button" value="在线预览" />
+			</a>
+			<a href="https://github.com/wenoif/StaticGallery" target="_blank">
+				<input type="button" value="获取代码" />
+			</a>
+		</div>
+		<!-- 小部件======================================================================= -->
+		<!-- 图片展示区======================================================================= -->
+		<div class="PictureShow" id="PictureShow">
+			<!--
+    <div class="PictureShowPic">
+	<a href="images/blue-mini/18.jpg" target="blank">
+       <img src="images/blue-mini/18.jpg"/>
+       <input type="checkbox" value="1" name="PictureShowPicCheckbox"/>
+	</a>
+    </div>
+-->
+		</div>
+		<!-- 图片展示区======================================================================= -->
+		<!-- 加载更多======================================================================= -->
+		<div class="more">
+			<a onclick="STOP()">加载更多....</a>
+		</div>
+		<!-- 加载更多======================================================================= -->
+		<!-- 底部信息======================================================================= -->
+		<div id="footer">
+			CopyRight@2020
+			<br>托管在Github
+		</div>
+		<!-- 底部信息======================================================================= -->
+	</body>
+</html>

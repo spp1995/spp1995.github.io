@@ -1,0 +1,246 @@
+body{
+font-size:1em;/* font-size 字体大小*/
+background-color: #f0f0f0;
+margin: 0;
+padding: 0;
+height: auto;
+position: relative;
+min-height: 100%;
+}
+a{text-decoration:none}/*去掉超链接的下划线*/
+
+/*顶部导肮栏============================================================*/
+.TopMenuBar ul { /*后代选择器*/
+list-style-type: none; /* 修改列表的样式(数字，小圆点等)为空*/
+margin: 0;/* 外边距 */
+padding: 0;/* 内边距 */
+overflow: hidden;/* 规定当内容溢出元素框时发生的事情。 hidden内容会被修剪，并且其余内容是不可见的。*/
+background-color: #AFEEEE; /*背景颜色*/
+}
+.TopMenuBar li {
+float: left;/*浮动*/
+}
+.TopMenuBar input {
+background-color: #AFEEEE;
+display: inline;/*使段落生出行内框，display 属性规定元素应该生成的框的类型。*/
+padding: 0.5em 0.5em;/* 内边距 */
+font-size:1em;/* font-size 字体大小*/
+line-height:1em;/*字体高度，和外部高度相同达到垂直居中效果*/
+border:none; /*设置边框 */
+outline: none; /* outline设置边框边缘的外围，可起到突出元素的作用。 */
+box-shadow: 0px 0px 0px 0px;/*设置边框阴影*/
+}
+
+.TopMenuBar input:hover:not(.active) {
+/* hover 选择鼠标指针浮动在其上的元素，并设置其样式*/
+background-color: #E6E6FA;
+}
+.search{
+width:10em;
+font-size:0.8em;/* font-size 字体大小*/
+line-height:1em;/*字体高度，和外部高度相同达到垂直居中效果*/
+}
+/*顶部导肮栏============================================================*/
+/*登录、注册、留言、通知============================================================*/
+#LoginWindow,#SignInWindow,#MessagePaperWindow,#InformWindow{
+display: none; /* display: none; 此元素不会被显示。*/
+background-color: #E9967A;
+z-index: 11;/*z-index 属性设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。*/
+width: 400px;
+height: 300px;
+position:fixed;/*position 属性规定元素的定位类型。fixed生成绝对定位的元素，相对于浏览器窗口进行定位。*/
+top:0;
+right:0;
+left:0;
+bottom:0;
+margin:auto;
+}
+
+/* 关闭按钮文字样式 */
+#LoginWindow .close a,#SignInWindow .close a,#MessagePaperWindow .close
+a,#InformWindow .close a{/*字体*/
+text-decoration: none;
+color: #000;
+font-weight:bold;
+}
+
+/* 弹出界面的关闭按钮 */
+#LoginWindow .close, #SignInWindow .close,#MessagePaperWindow
+.close,#InformWindow .close{
+text-align: right;
+margin-right: 0px;
+background-color: #4169E1;
+}
+
+#LoginWindow table, #SignInWindow table,#MessagePaperWindow table,#InformWindow
+table{
+margin:0 auto;
+}
+
+#MessageBoard{
+width:380px;
+height:220px;
+overflow:auto;
+}
+/*登录、注册、留言、通知============================================================*/
+/*悬浮广告==========================================================*/
+#FloatAdvertising{
+position:absolute; /*absolute生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。*/
+left:30px;
+top:80px;
+z-index:2;
+}
+#CloseFloatAdvertisingDiv{
+position:relative;/*生成相对定位的元素，相对于其正常位置进行定位。*/
+right:0px;
+bottom:0px;
+text-align:right;
+font-size:0.5em;
+cursor:pointer;/*cursor 属性规定要显示的光标的类型（形状）。pointer使光标呈现为指示链接的指针（一只手）*/
+}
+/*悬浮广告==========================================================*/
+/*返回顶部==========================================================*/
+.ToTop {
+position: fixed;/*fixed生成绝对定位的元素，相对于浏览器窗口进行定位。*/
+right: 25px;
+bottom: 25px;
+display: block;/*使段落生出行内框：block元素将显示为块级元素，此元素前后会带有换行符。*/
+width: 26px;
+height: 62px;
+background: url(../images/rocket.png) no-repeat 0 0;
+-webkit-transition: all 0.2s ease-in-out;
+z-index:99999;
+}
+
+.ToTop:hover {
+background: url(../images/rocket.png) no-repeat 0 -62px;
+z-index:99999;
+}
+/*返回顶部==========================================================*/
+/*全选/全不选/反选===================================================*/
+.SelectPictureMenu{
+width:100%;
+margin:0 auto;
+text-align:center
+}
+.SelectPictureMenu input{
+background-color: #AFEEEE;
+display: inline;/*使段落生出行内框，display 属性规定元素应该生成的框的类型。*/
+padding: 0.5em 1em;/* 内边距 */
+font-size:1em;/* font-size 字体大小*/
+line-height:1em;/*字体高度，和外部高度相同达到垂直居中效果*/
+border:none; /*设置边框 */
+outline: none; /* outline设置边框边缘的外围，可起到突出元素的作用。 */
+box-shadow: 0px 0px 0px 0px;/*设置边框阴影*/
+margin: 1em auto;
+}
+.SelectPictureMenu input:hover:not(.active) {
+/* hover 选择鼠标指针浮动在其上的元素，并设置其样式*/
+background-color: #E6E6FA;
+}
+
+/*全选/全不选/反选===================================================*/
+/*轮播图==============================================================*/
+.Banner{
+height:280px;
+padding: 1;
+width: 800px;
+margin: 0 auto;
+
+}
+.Banner #focus{
+width: 800px;
+height: 280px;
+overflow: hidden;
+position: relative;
+}
+.Banner #focus ul{
+height: 280px;
+position: absolute;
+}
+.Banner #focus ul li{
+float: left;
+width: 800px;
+height: 280px;
+overflow: hidden;
+position: relative;
+background: #000;
+}
+.Banner #focus ul li div{
+position: absolute;
+overflow: hidden;
+}
+.Banner #focus .preBtn{
+width: 45px;
+height: 100px;
+left: 0;
+top:90px;
+background:url(../images/spirte.png) no-repeat 0 0;
+background-color:#000;
+cursor: pointer;
+opacity:0.4;
+filter:alpha(opacity=40);
+}
+.Banner #focus .nextBtn{
+width: 45px;
+height: 100px;
+right:40px;
+top:90px;
+background:url(../images/spirte.png) no-repeat right top;
+background-color:#000;
+cursor: pointer;
+opacity:0.4;
+filter:alpha(opacity=40);
+}
+.Banner img{
+width:100%;
+height:100%;
+}
+/*轮播图==================================================================*/
+/*图片展示区==================================================================*/
+.PictureShow{
+width: 100%;
+height: 1200px;
+overflow: hidden;
+}
+.PictureShowPic{
+float:left;
+margin:0.5em;
+position:relative;
+}
+.PictureShowPic img{
+width:300px;
+height:300px
+}
+.PictureShowPic input{
+position:absolute;
+top:0;
+right:0;
+z-index:1;
+zoom:150%;
+}
+
+/*图片展示区==================================================================*/
+/*加载更多==================================================================*/
+.more{
+
+padding:2em;
+margin:0 auto;
+text-align:center;
+}
+/*加载更多==================================================================*/
+/*底部信息==================================================================*/
+#footer {
+height: 60px;
+line-height: 30px;
+font-color: #AFEEEE;
+bottom: 0;
+width: 100%;
+text-align: center;
+background: #333;
+color: #fff;
+font-family: Arial;
+font-size: 0.9em;
+letter-spacing: 1px;
+}
+/*底部信息==================================================================*/
